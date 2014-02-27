@@ -1,0 +1,125 @@
+#log {
+	float: left;
+	width: 200px;
+	margin: 10px;
+	/* padding: 10px; */
+	/* padding-right:40px; */
+	padding-left: 100px;
+	z-index: 0;
+}
+
+#stats {
+	margin: 10px;
+	float: left;
+	width: 100px;
+}
+
+#options {
+	margin: 10px;
+	float: left;
+}
+
+#error {
+	color: red;
+	margin: 0px auto;
+	
+}
+
+#wrapper {
+	padding: 0px
+}
+
+
+
+body {
+	height: 100%;
+	margin: 0px;
+}
+
+/* Events */
+
+.eventPanel {
+    background: none repeat scroll 0 0 white;
+    border: 2px solid transparent;
+    left: 450px;
+    padding: 10px;
+    position: absolute;
+    top: 50px;
+    width: 335px;
+    z-index: 20;
+}
+
+body.noMask .eventPanel {
+	background-color: black;
+}
+
+.eventPanel:before {
+    background-color:white;
+    opacity: 0.6;
+    content: " ";
+    height: 700px;
+    left: -452px;
+    position: absolute;
+    top: -85px;
+    width: 1220px;
+    z-index: -2;
+}
+
+body.noMask .eventPanel:before {
+	opacity: 0;
+}
+
+.eventPanel:after {
+	position: absolute;
+	top: -2px;
+	left: -2px;
+	width: 100%;
+	height: 100%;
+	content: " ";
+	border: 1px solid black;
+    box-shadow: 5px 5px 5px #666666;
+	z-index: -2;
+}
+
+body.noMask .eventPanel:after {
+	border-color: white;
+}
+
+.eventPanel .button {
+	float:left;
+	margin-right: 20px;
+}
+
+body.noMask .eventPanel .button {
+	border-color: white;
+	color: white;
+}
+
+.eventTitle {
+	font-weight: bold;
+    position: center;
+}
+
+
+#description {
+	position: relative;
+	min-height: 100px;
+}
+
+#description textarea {
+	width: 100%;
+	height: 225px;
+}
+
+body.noMask #description {
+	color: white;
+}
+
+#description > div {
+	padding-bottom: 20px;
+}
+
+#buttons > .button {
+    margin: 0 5px 5px;
+    margin-right: 15px;
+}

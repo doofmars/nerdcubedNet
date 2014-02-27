@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+		<title>Nerdcubed-Simulator</title>
+		<script type="text/javascript" src="script/jquery-2.0.3.js"></script>
+		<link rel='stylesheet' id='style-css'  href='css/style.css' type='text/css' media='all' />
+
+		<script type="text/javascript" src="script/constantsAndVariables.js"></script>
+		<script type="text/javascript" src="script/actions.js"></script>
+		<script type="text/javascript" src="script/math.js"></script>
+		<script type="text/javascript" src="script/messages.js"></script>
+		<script type="text/javascript" src="script/event.js"></script>
+
+		<script type="text/javascript" src="script/engine.js"></script>
+	</head>
+	<body onload="init();">
+		<div id="wrapper">
+			<div id="log">
+			</div>
+			<div id="stats">
+				<div id="row_views">
+					<div id="row_views_key">Views</div>
+					<div id="row_views_val">0</div>
+				</div>
+				<div id="row_videos">
+					<div id="row_videos_key">Videos</div>
+					<div id="row_videos_val">0</div>
+				</div>
+				<div id="row_sub">
+					<div id="row_sub_key">Subscriber</div>
+					<div id="row_sub_val">0</div>
+				</div>
+				<div id="row_health">
+					<div id="row_health_key">Health</div>
+					<div id="row_health_val">100.0</div>
+				</div>
+			</div>
+			<div id="options">
+			
+				<input id="btVideo" type="button" value="Make a Video" onClick="makeVideo()"></input>
+				<select id="selVideo">
+					<option value="0">Standard 101 Video [-10 HP]</option>
+					<option value="1">The Alpha Detective [-8 HP | longer edits]</option>
+					<option value="2">Challenge Video [-12 HP | shorter edits]</option>
+					<option value="3">Completes Video [-6 HP | Fewer Views]</option>
+					<option value="4">Soap Box Video [-2 HP | Fan Rage]</option>
+					<option value="5">Collaboration Video [-16 HP | More Views]</option>
+					<option value="6">Father and Son-Days Video [-10 HP]</option>
+					<option value="7">IRL Video [-14 HP]</option>
+				</select>
+				<br>
+				<input id="btEat0" type="button" value="Eat P&P" onClick="eat(0)"></input>
+				<input id="btEat1" type="button" value="Eat Pizza" onClick="eat(1)"></input>
+				<input id="btEat2" type="button" value="Eat Premium Food&reg" onClick="eat(2)"></input>
+				<br>
+				<input id="btSleep" type="button" value="Sleep" onClick="sleep()"></input>
+				<br><br>
+				
+	
+			</div>
+		</div>
+	</body>
+
+</html>
