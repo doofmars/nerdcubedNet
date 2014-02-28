@@ -18,25 +18,25 @@ function addMessage(message, type) {
 }
 
 function messageVideo(){
-	if (videos == 1) {
+	if (variables.videos == 1) {
 		addMessage("You have made your first video");
 	}
-	if (videos > 9 ){
-		if (videos < 100  && videos % 10 == 0) {
-			addMessage("You have made your " +videos+ "th video");			
-		} else if (videos >= 100  && videos % 100 == 0) {
-			addMessage("You have made your " +videos+ "th video");						
+	if (variables.videos > 9 ){
+		if (variables.videos < 100  && variables.videos % 10 == 0) {
+			addMessage("You have made your " + variables.videos + "th video");			
+		} else if (variables.videos >= 100  && variables.videos % 100 == 0) {
+			addMessage("You have made your " + variables.videos + "th video");						
 		}
 	}
 }
 
 var healthLowSend = false;
 
-function messageHealthLow(health) {
-	if (healthLowSend == false && health < 10) {
+function messageHealthLow() {
+	if (healthLowSend == false && variables.health < 10) {
 		healthLowSend = true;
 		addMessage("Your health is low");
-	} else if (healthLowSend == true && health >= 10) {
+	} else if (healthLowSend == true && variables.health >= 10) {
 		healthLowSend = false;
 	}
 }

@@ -11,10 +11,12 @@
 		<script type="text/javascript" src="script/math.js"></script>
 		<script type="text/javascript" src="script/messages.js"></script>
 		<script type="text/javascript" src="script/event.js"></script>
+		<script type="text/javascript" src="script/windows.js"></script>
 
 		<script type="text/javascript" src="script/engine.js"></script>
 	</head>
 	<body onload="init();">
+	<div id="saveNotify">saved</div>
 		<div id="wrapper">
 			<div id="log">
 			</div>
@@ -37,7 +39,7 @@
 				</div>
 			</div>
 			<div id="options">
-			
+				<div id="video">
 				<input id="btVideo" type="button" value="Make a Video" onClick="makeVideo()"></input>
 				<select id="selVideo">
 					<option value="0">Standard 101 Video [-10 HP]</option>
@@ -49,16 +51,24 @@
 					<option value="6">Father and Son-Days Video [-10 HP]</option>
 					<option value="7">IRL Video [-14 HP]</option>
 				</select>
-				<br>
-				<input id="btEat0" type="button" value="Eat P&P" onClick="eat(0)"></input>
-				<input id="btEat1" type="button" value="Eat Pizza" onClick="eat(1)"></input>
-				<input id="btEat2" type="button" value="Eat Premium Food&reg" onClick="eat(2)"></input>
-				<br>
-				<input id="btSleep" type="button" value="Sleep" onClick="sleep()"></input>
-				<br><br>
-				
-	
+				</div>
+				<div id="food">
+					<input id="btEat0" type="button" value="Eat P&P" onClick="eat(0)"></input>
+					<input id="btEat1" type="button" value="Eat Pizza" onClick="eat(1)"></input>
+					<input id="btEat2" type="button" value="Eat Premium Food&reg" onClick="eat(2)"></input>
+				</div>
+				<div id="sleep">			
+					<input id="btSleep" type="button" value="Sleep" onClick="sleep()"></input>
+				</div>			
 			</div>
+		</div>
+		<div id="bottom">
+			An unofficial fan-project, all love to Dan! 
+			<a class="what">What?</a>
+			<a class="who">Who?</a>
+			<a class="why">Why?</a>
+			<a class="save">Save?</a>
+			<a class="load">Load!</a>
 		</div>
 	</body>
 

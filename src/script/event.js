@@ -43,7 +43,7 @@ function videoEventID(eventID){
 		addHealth(5);
 		break;
 	case 6:
-		var upset = Math.floor((subscriber + extraSubs)/10 * Math.random());
+		var upset = Math.floor((variables.subscriber + variables.extraSubs)/10 * Math.random());
 		if (upset > 0) {
 			addMessage("The video has upset "+upset+" of your subscribers");
 			addExtraSubs(-upset);			
@@ -51,8 +51,8 @@ function videoEventID(eventID){
 		break;
 	case 7:
 		var newSubs = 10;
-		if (Math.floor((subscriber + extraSubs)/5) > newSubs) {
-			newSubs = Math.floor((subscriber + extraSubs)/5);
+		if (Math.floor((variables.subscriber + variables.extraSubs)/5) > newSubs) {
+			newSubs = Math.floor((variables.subscriber + variables.extraSubs)/5);
 		}
 		addMessage("Your new video has gained some attention, you have " + newSubs + " new subscribers");
 		addExtraSubs(newSubs);	

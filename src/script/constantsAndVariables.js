@@ -3,26 +3,33 @@ const MAX_LOG = 10; //number of max log entrys
 const DEBUG = true; //debugmode
 const BOOKER_CATCH = true;
 const COOLDOWNTIME_VIDEO = 60; //time in seconds until video gets cold
+const MAX_VALUE = 2314159265358;
 
-var views;
-var videos;
-var coldVideos;
-var cooldown;
-var subscriber;
-var extraSubs;
-var health;
-var action;
 var nIntervId;
+ 
+var variables = {
+		"views": 0,
+		"videos": 0,
+		"coldVideos": 0,
+		"cooldown": COOLDOWNTIME_VIDEO,
+		"subscriber": 0,
+		"extraSubs": 0,
+		"health": 100,
+		"action": "idle"
+};
 
 //times, hp and messages for Food
 var food = [
-{"time": 120,
+{"name": "Eat P&P",
+	"time": 120,
 	"hp": 4,
 	"message": "You ate some P&P and gained "},
-{"time": 300,
+{"name": "Eat Pizza",
+	"time": 300,
 	"hp": 10,
 	"message": "You ate a whole Pizza "},
-{"time": 600,
+{"name": "Eat Premium Food&reg",
+	"time": 600,
 	"hp": 30,
 	"message": "You ate some delicious Premium Food&reg "}
             ];
