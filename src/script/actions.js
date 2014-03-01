@@ -1,11 +1,11 @@
 //make new video first phase "Recording"
 function makeVideo() { 
-	var videoIndex = $('#selVideo').val();
+	variables.videoID = parseInt($('#selVideo').val());
 	if (variables.action == "idle") {
 		variables.action = "video1";
 		$("#btVideo").attr("Value", "Recording");
 		lockButtons();
-		setTimeout(makeVideoPhase2, video_stats[videoIndex].time1 * 1000);
+		variables.timer[0] = video_stats[variables.videoID].time1;
 	} else {
 		addMessage("Wrong action state in makeVideo", "error");
 		variables.action = "idle";
@@ -14,12 +14,11 @@ function makeVideo() {
 
 //make new video second phase "Editing", add health accordingly
 function makeVideoPhase2() {
-	var videoIndex = $('#selVideo').val();
 	if (variables.action == "video1") {
 		variables.action = "video2";
 		$("#btVideo").attr("Value", "Editing");
-		addHealth(video_stats[videoIndex].hp);
-		setTimeout(makeVideoPhase3, video_stats[videoIndex].time2 * 1000);
+		addHealth(video_stats[variables.videoID].hp);
+		variables.timer[0] = video_stats[variables.videoID].time2;
 	} else {
 		addMessage("Wrong action state in makeVideoPhase2", "error");
 		variables.action = "idle";
@@ -28,15 +27,14 @@ function makeVideoPhase2() {
 
 //Reset to "idle", add video, call videoEvent, add health and views accordingly
 function makeVideoPhase3() {
-	var videoIndex = $('#selVideo').val();
 	if (variables.action == "video2") {
 		addVideo(1);
-		addHealth(video_stats[videoIndex].hp);
+		addHealth(video_stats[variables.videoID].hp);
 		messageVideo();
 		
-		addViews(Math.floor((variables.subscriber + variables.extraSubs) * video_stats[videoIndex].multiplyer));
+		addViews(Math.floor((variables.subscriber + variables.extraSubs) * video_stats[variables.videoID].multiplyer));
 		
-		if (videoIndex == 4) { //decides if soapbox video or not
+		if (variables.videoID == 4) { //decides if soapbox video or not
 			videoEventID(6); // special event for soap box video
 		} else {
 			videoEvent();
@@ -54,7 +52,7 @@ function makeVideoPhase3() {
 //toggle sleep State
 function sleep() {
 	if (variables.action == "sleep") {
-		messageSleep();
+		addMessage("You have slept and refilled your health");
 		variables.action = "idle";
 		unlockButtons();
 	} else {
@@ -68,7 +66,7 @@ function eat(btn) {
 	$("#btEat"+btn).attr("disabled", "disabled");
 	addHealth(food[btn].hp);
 	addMessage(food[btn].message + "[+" + food[btn].hp + "HP]");
-	setTimeout(function() {unlockEat(btn);}, food[btn].time*1000);
+	variables.timer[btn + 1] = food[btn].time;
 }
 
 function unlockEat(btn){

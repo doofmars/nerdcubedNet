@@ -40,5 +40,3 @@ function messageHealthLow() {
 		healthLowSend = false;
 	}
 }
-
-function messageSleep(){ addMessage("You have slept and refilled your health"); }

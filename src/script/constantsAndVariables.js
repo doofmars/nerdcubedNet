@@ -10,12 +10,14 @@ var nIntervId;
 var variables = {
 		"views": 0,
 		"videos": 0,
+		"videoID": 0,
 		"coldVideos": 0,
 		"cooldown": COOLDOWNTIME_VIDEO,
 		"subscriber": 0,
 		"extraSubs": 0,
 		"health": 100,
-		"action": "idle"
+		"timer": [0, 0, 0, 0], //timer for videos, eat1, eat2, eat3
+		"action": "idle", 
 };
 
 //times, hp and messages for Food

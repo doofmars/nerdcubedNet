@@ -1,5 +1,21 @@
+/*
+ * This Module handles the entire display of the bottom footer.
+ * addmessage() and validateSave() is required.
+ * 
+ * */
+
+
 //sets the onclick function to the about links at the bottom of the page.
 function initWindows() {
+	$('<div>').attr('id', 'footer').appendTo("#wrapper").html(
+			'An unofficial fan-project, all love to Dan! ' +
+			'<a class="what">What?</a> ' +
+			'<a class="who">Who?</a> ' +
+			'<a class="why">Why?</a> ' +
+			'<a class="save">Save?</a> ' +
+			'<a class="load">Load!</a>'
+			);
+	
 	$('.what').click(function(){ whatWindow();	});
 	$('.who').click(function(){ whoWindow();	});
 	$('.why').click(function(){ whyWindow();	});
@@ -79,6 +95,7 @@ function loadWindow(){
 	messagebox.animate({opacity: 1}, 200, 'linear');
 }
 
+//load the Save from the textarea
 function loadSave(){
 	var save = null;
 	try {
@@ -90,8 +107,8 @@ function loadSave(){
 		delete_cookie("chocolateChipCookie");
 		variables = save;
 		updateAll();
+		setButtons();
 	} else {
-		if (DEBUG) {console.log("Error in save file");}
 		addMessage("Error while loading save", "error");
 	}
 	

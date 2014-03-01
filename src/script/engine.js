@@ -12,21 +12,35 @@ function init() {
 		variables = saved;
 		addMessage('Game has been sucessfully loaded! Click <a id="restartGame">here</a> to restart the game');
 		$('#restartGame').click(function(){ delete_cookie("chocolateChipCookie"); window.location.reload();	});
+		setButtons();
 		updateAll();
 	}
 	 
 	nIntervId = setInterval(heartbeat, 1000);
-	unlockButtons();
-	unlockEat(0);
-	unlockEat(1);
-	unlockEat(2);
 	initWindows();
 	$('#selVideo').val("0");
-	
+}
+
+//locks / unlocks the buttons
+function setButtons() {
+	if (variables.action !== "idle") {
+		lockButtons();
+		if (variables.action == "video1") {
+			$("#btVideo").attr("Value", "Recording");
+		} else if (variables.action == "video1") {
+			$("#btVideo").attr("Value", "Editing");
+		}
+	}
+	for ( var i = 1; i < variables.timer.length; i++) {
+		if (variables.timer[i] > 0) {
+			$("#btEat"+ (i - 1)).attr("disabled", "disabled");
+		}
+	}
 }
 
 //main function that runs the game.
 function heartbeat() {
+	if (DEBUG) { $('textarea#debug').val(JSON.stringify(variables)); }
 	if (variables.action == "sleep") {
 		addHealth(10);
 	} else {
@@ -39,6 +53,7 @@ function heartbeat() {
 	messageHealthLow();
 	newSubscriber();
 	newViews();
+	decrementTimer();
 	
 	update();
 }
@@ -75,6 +90,31 @@ function newViews() {
 	addViews(variables.videos - variables.coldVideos);
 }
 
+//function to update timer intervall, to handle button lock time (and beeing able to save them)
+function decrementTimer() {
+	if (variables.timer[0] == 0) {
+		if (variables.action == "video1") {
+			variables.timer[0] = -1;
+			makeVideoPhase2();
+		} else if(variables.action == "video2") {
+			variables.timer[0] = -1;
+			makeVideoPhase3();
+		} else if (variables.action == "idle") {
+			variables.timer[0] = -1;
+			unlockButtons();
+		}
+	}
+	for ( var i = 0; i < variables.timer.length; i++) {
+		if (variables.timer[i] > 0) {
+			variables.timer[i] = variables.timer[i] - 1;
+		}
+		if (i > 0 && variables.timer[i] == 0) {
+			unlockEat(i - 1);
+			variables.timer[i] = -1;
+		}
+	}
+}
+
 //updates views and subscribers
 function update() {
 	$('#row_views_val').html(variables.views);
@@ -105,15 +145,19 @@ function bake_cookie(name, value, exdays) {
 	if (DEBUG) {console.log("Saved: " + JSON.stringify(value));}
 }
 
-//load game from cookie
+//load game from cookie & validate
 function read_cookie(name) {
 	var result = document.cookie.match(new RegExp(name + '=([^;]+)'));
 	result && (result = JSON.parse(result[1]));
-	if (DEBUG && result != null) {console.log("Loaded: " + JSON.stringify(result));}
-	return result;
+	
+	if (validateSave(result)) {
+		if (DEBUG && result != null) {console.log("Loaded: " + JSON.stringify(result));}
+		return result;		
+	} else {
+		return null;
+	}
 }
 
-//delete cookie
 function delete_cookie(name) {
 //	document.cookie = [name, '=; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; ', window.location.host.toString()].join('');
 	document.cookie = [name, '=; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/'].join('');
@@ -122,20 +166,50 @@ function delete_cookie(name) {
 
 function validateSave(save){
 	if (save == null) {
+		if (DEBUG) {console.log("Loading Error: Input is null");}
 		return false;
 	}
-	if (typeof(save.views) == 'number' &&
-		typeof(save.videos) == 'number' &&
-		typeof(save.coldVideos) == 'number' &&
-		typeof(save.cooldown) == 'number' &&
-		typeof(save.subscriber) == 'number' &&
-		typeof(save.extraSubs) == 'number' &&
-		typeof(save.health) == 'number' &&
-		typeof(save.action) == 'string') {
-		return true; 	
-	} else {
+	//try block for checking timer attribute (if it exists and if enough fields are set.
+	try {
+		if (save.timer.length === variables.timer.length) {
+			for ( var i = 0; i < variables.timer.length; i++) {
+				if (typeof(save.timer[i]) !== 'number') {
+					if (DEBUG) {console.log("Loading Error: timer " + i + " is !== 'number'");}
+					return false;
+				}
+			}
+		} else {
+			if (DEBUG) {console.log("Loading Error: timer.length is different");}
+			return false;
+		}
+	} catch (e) {
+		if (DEBUG) {console.log("Loading Error: " + e);}
 		return false;
+	}
+	
+	//checks the rest of the jqery object (if attribute exists and if it is the correct type
+	if (typeof(save.views) !== 'number'){
+		if (DEBUG) {console.log("Loading Error: typeof views mismatch");}
+	} else if (typeof(save.videos) !== 'number' ){
+		if (DEBUG) {console.log("Loading Error: typeof videos mismatch");}
+	} else if (typeof(save.videoID) !== 'number' ){
+		if (DEBUG) {console.log("Loading Error: typeof videoID mismatch");}
+	} else if (typeof(save.coldVideos) !== 'number' ){
+		if (DEBUG) {console.log("Loading Error: typeof coldVideos mismatch");}
+	} else if (typeof(save.cooldown) !== 'number' ){
+		if (DEBUG) {console.log("Loading Error: typeof cooldown mismatch");}
+	} else if (typeof(save.subscriber) !== 'number' ){
+		if (DEBUG) {console.log("Loading Error: typeof subscriber mismatch");}
+	} else if (typeof(save.extraSubs) !== 'number' ){
+		if (DEBUG) {console.log("Loading Error: typeof extraSubs mismatch");}
+	} else if (typeof(save.health) !== 'number' ){
+		if (DEBUG) {console.log("Loading Error: typeof health mismatch");}
+	} else if (typeof(save.action) !== 'string') {
+		if (DEBUG) {console.log("Loading Error: typeof action mismatch");}		
+	} else {
+		return true;
 	}			
+	return false;
 }
 
 /*
@@ -149,8 +223,9 @@ function debugMode() {
 	var debug = $('<div>').attr('id', 'debug').appendTo("#options");
 	$('<input type="button" onclick="stopHeartbeat()">')
 		.attr("Value", "Stop").appendTo(debug);
-	$('<input type="button" onclick="unlockButtons()">')
+	$('<input type="button" onclick="unlockButtons(); unlockEat(0); unlockEat(1); unlockEat(2);">')
 		.attr("Value", "Unlock").appendTo(debug);
+	
 	$('<input type="button" onclick="addHealth(-10)">')
 		.attr("Value", "Punch").appendTo(debug);
 	$('<input type="button" onclick="addHealth(variables.health * 2)">')
@@ -162,13 +237,18 @@ function debugMode() {
 	
 	$('<input type="button" onclick="test()">')
 	.attr("Value", "Test").appendTo(debug);
+	
+	$('<textarea id="debug" wrap="on" style="width: 603px; height: 148px;" >').appendTo("#options");
 
 }
 
 
 function test(){
-	showEvent(1);
+//	showEvent(1);
 //	addMessage("sadfnasdfiojasdifasdjpfk opasdkfpodskafpoaksdfp");
+	bake_cookie("chocolateChipCookie", variables, 14);
+//	console.log(variables.timeoutEat);
+//	console.log(typeof(variables.timeoutEat[0]));
 }
 
 /*
