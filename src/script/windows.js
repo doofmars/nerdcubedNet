@@ -41,7 +41,7 @@ function showWindow(title, text){
 
 function whatWindow(){
 	if ($('.eventPanel').length > 0) { return; }
-	showWindow("What?", "<p>This is an unofficial Fan project. Sloley to parody the typical life of a YouTuber like Dan</p>" + 
+	showWindow("What?", "<p>This is an unofficial Fan project. Solely to parody the typical life of a YouTuber like Dan</p>" + 
 			"<p>This Project is created in my free time and out of fun and passion.</p>" +
 			"<p>The game requires Javascript to run, so you shold be good if you can see this.</p>" +
 			"<p><b>Thank you for Playing!</b></p>"
