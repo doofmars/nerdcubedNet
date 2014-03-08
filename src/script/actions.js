@@ -1,6 +1,10 @@
 //make new video first phase "Recording"
 function makeVideo() { 
-	variables.videoID = parseInt($('#selVideo').val());
+	if ($('#selVideo').length > 0) {
+		variables.videoID = parseInt($('#selVideo').val());		
+	} else {
+		variables.videoID = 0;
+	}
 	if (variables.action == "idle") {
 		variables.action = "video1";
 		$("#btVideo").attr("Value", "Recording");
@@ -64,9 +68,9 @@ function sleep() {
 //eat and lock button
 function eat(btn) {
 	$("#btEat"+btn).attr("disabled", "disabled");
-	addHealth(food[btn].hp);
-	addMessage(food[btn].message + "[+" + food[btn].hp + "HP]");
-	variables.timer[btn + 1] = food[btn].time;
+	addHealth(food_stats[btn].hp);
+	addMessage(food_stats[btn].message + "[+" + food_stats[btn].hp + "HP]");
+	variables.timer[btn + 1] = food_stats[btn].time;
 }
 
 function unlockEat(btn){

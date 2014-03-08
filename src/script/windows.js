@@ -23,6 +23,14 @@ function initWindows() {
 	$('.load').click(function(){ loadWindow();	});
 }
 
+function isWindowActive(){
+	if ($('.eventPanel').length > 0){
+		return true;
+	} else {		
+		return false;
+	}
+}
+
 //removes the set window
 function removeWindow(){
 	$('div#info').remove();
@@ -40,7 +48,7 @@ function showWindow(title, text){
 }
 
 function whatWindow(){
-	if ($('.eventPanel').length > 0) { return; }
+	if (isWindowActive()) { return; }
 	showWindow("What?", "<p>This is an unofficial Fan project. Solely to parody the typical life of a YouTuber like Dan</p>" + 
 			"<p>This Project is created in my free time and out of fun and passion.</p>" +
 			"<p>The game requires Javascript to run, so you shold be good if you can see this.</p>" +
@@ -49,7 +57,7 @@ function whatWindow(){
 }
 
 function whoWindow(){
-	if ($('.eventPanel').length > 0) { return; }
+	if (isWindowActive()) { return; }
 	showWindow("Who?", '<p>Idea and code created by Doofmars (<a href="https://twitter.com/doofmars">@doofmars</a>'+
 			' or <a href="http://www.doofmars.de">doofmars.de</a>, mostly german!)</p>' + 
 			'<p>The logo was created by <a href="https://twitter.com/WhoHidTheTom">@WhoHidTheTom</a> ' +
@@ -58,7 +66,7 @@ function whoWindow(){
 }
 
 function whyWindow(){
-	if ($('.eventPanel').length > 0) { return; }
+	if (isWindowActive()) { return; }
 	var answer = 'Because';
 	var rand =  Math.floor(Math.random()*10);
 	switch (rand) {
@@ -76,16 +84,16 @@ function whyWindow(){
 }
 
 function saveWindow(){
-	if ($('.eventPanel').length > 0) { return; }
+	if (isWindowActive()) { return; }
 	var messagebox = showWindow("Save", "The save-function works with cookies, "+
-			"so if you dont like cookies or want to restore your progress to another system copy, save and load the following text:");	
+			"so if you dont like cookies or want to restore your progress on another system copy, save and load the following text:");	
 	$('<textarea id="saveArea" readonly="readonly" wrap="on" >').val(JSON.stringify(variables))
 	.appendTo("#description");
 	messagebox.animate({opacity: 1}, 200, 'linear');
 }
 
 function loadWindow(){
-	if ($('.eventPanel').length > 0) { return; }
+	if (isWindowActive()) { return; }
 	var messagebox = showWindow("Load", "The load-function works with cookies, "+
 			"so if you dont like cookies or want to restore your progress to another system copy, save and load the following text:");	
 	$('<textarea id="loadArea" wrap="on" >')

@@ -16,12 +16,14 @@ var variables = {
 		"subscriber": 0,
 		"extraSubs": 0,
 		"health": 100,
+		"foodUnlocked":0,
+		"typesUnlocked":0,
 		"timer": [0, 0, 0, 0], //timer for videos, eat1, eat2, eat3
-		"action": "idle", 
+		"action": "idle",
 };
 
 //times, hp and messages for Food
-var food = [
+var food_stats = [
 {"name": "Eat P&P",
 	"time": 120,
 	"hp": 4,
@@ -81,12 +83,56 @@ var video_stats =[
 				];
 
 var events = [
+{"title": "Title", 
+	"text": "Text",
+	"buttonA": "Button A Text",
+	"buttonB": "Button B Text"},
 {"title": "A strange offer", 
 	"text": "A strange copany, you can't even pronounce, approces you and offers yo a deal over 10 videos you have to rate, better, than they are!",
 	"buttonA": "Accept [+10 videos]",
-	"buttonB": "Declie"},
-{"title": "A strange offer2", 
-	"text": "A strange copany, you can't even pronounce, approces you and offers yo a deal over 10 videos you have to rate, better, than they are!",
-	"buttonA": "Accept [+20 videos]",
-	"buttonB": "Decli2e"}
+	"buttonB": "Declie"}
+	];
+
+var videoResearchData = [
+{"name": "The Illusion of a choice",
+	"cost": 128,
+	},
+{"name": "A real choice",
+	"cost": 512,
+},
+{"name": "Do you want some Challange?",
+		"cost": 1024,
+	},
+{"name": "The list is not complete",
+		"cost": 9999,
+	},
+{"name": "What will be next?",
+		"cost": 20000,
+	},
+{"name": "We need some help for the next one",
+		"cost": 54321,
+	},
+{"name": "Luke, I am your...",
+		"cost": 101100,
+	},
+{"name": "Is this real live?",
+		"cost": 314159,
+	},
+{"name": "No new types to research",
+		"cost": "-",
+	}
+			];
+var foodResearchData = [
+{"name": "Something cheap",
+	"cost": 50000,
+	},
+{"name": "Something delicious",
+		"cost": 101010,
+	},
+{"name": "Something Expensive",
+		"cost": 1000000,
+	},
+{"name": "No new types to research",
+		"cost": "-",
+	}
 	];

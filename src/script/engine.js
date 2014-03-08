@@ -41,7 +41,7 @@ function setButtons() {
 //main function that runs the game.
 function heartbeat() {
 	if (DEBUG) { $('textarea#debug').val(JSON.stringify(variables)); }
-	if (variables.action == "sleep") {
+	if (variables.action == "sleep") { //adds health while asleep
 		addHealth(10);
 	} else {
 		addHealth(-0.1);
@@ -50,8 +50,8 @@ function heartbeat() {
 		stopHeartbeat();
 	}
 	
-	messageHealthLow();
-	newSubscriber();
+	messageHealthLow(); //message if health is critical
+	newSubscriber(); 
 	newViews();
 	decrementTimer();
 	
@@ -115,13 +115,46 @@ function decrementTimer() {
 	}
 }
 
-//updates views and subscribers
+//updates views and subscribers, adds research button
 function update() {
 	$('#row_views_val').html(variables.views);
 	if (variables.subscriber + variables.extraSubs < 0) {
 		$('#row_sub_val').html(0);
 	} else {
 		$('#row_sub_val').html(variables.subscriber + variables.extraSubs);
+	}
+
+	if (variables.videos > 2 && $('#research').length == 0) {
+		var research = $('<div>').attr('id', 'research').insertAfter("#sleep");
+		$('<input type="button" onclick="researchWindow()">')
+			.attr("Value", "Research").appendTo(research);
+	}
+	
+	var selector = $('select#selVideo');
+	
+	
+	if (variables.typesUnlocked > 0 && selector.length == 0) { //creates selector if it does not exist
+		selector = $('<select id="selVideo">').appendTo('#video');
+	}
+	for (var i = 0; i < video_stats.length; i++) { //adds options for selector
+		if (variables.typesUnlocked > i && $('select#selVideo option[value=' + i + ']').length == 0) {
+			if (DEBUG) {console.log("Type " + i + " Unlocked"); }
+			selector.append($('<option>').attr("value", i).text(video_stats[i].title));
+		}
+	}
+	
+	var foodContainer = $('#food');
+	
+	if (variables.foodUnlocked > 0 && foodContainer.length == 0) {
+		console.log("t2=" + foodContainer.lenght === 0);
+		foodContainer = $('<div>').attr('id','food').insertAfter('#video');
+	}
+	for ( var i = 0; i < food_stats.length; i++) {
+		if (variables.foodUnlocked > i && $('#btEat' + i).length == 0) {
+//			if (DEBUG) {console.log("Food " + i + " Unlocked"); }
+			$('<input type="button" onClick="eat(' + i + ')">').attr('id','btEat' + i)
+				.attr('Value', food_stats[i].name).appendTo(foodContainer);
+		}
 	}
 }
 
@@ -134,10 +167,10 @@ function updateAll() {
 
 //save game in cookie
 function bake_cookie(name, value, exdays) {
-//	var cookie = [name, '=', JSON.stringify(value), '; domain=.', window.location.host.toString(), '; path=/;'].join('');
 	var d = new Date();
 	d.setTime(d.getTime()+(exdays*24*60*60*1000));
 	
+//	var cookie = [name, '=', JSON.stringify(value), '; domain=.', window.location.host.toString(), '; path=/;'].join('');
 	var cookie = [name, '=', JSON.stringify(value), '; expires=.', d.toGMTString(), '; path=/;'].join('');
 	document.cookie = cookie;
 	
@@ -204,6 +237,10 @@ function validateSave(save){
 		if (DEBUG) {console.log("Loading Error: typeof extraSubs mismatch");}
 	} else if (typeof(save.health) !== 'number' ){
 		if (DEBUG) {console.log("Loading Error: typeof health mismatch");}
+	} else if (typeof(save.foodUnlocked) !== 'number' ){
+		if (DEBUG) {console.log("Loading Error: typeof foodUnlocked mismatch");}
+	} else if (typeof(save.typesUnlocked) !== 'number' ){
+		if (DEBUG) {console.log("Loading Error: typeof typesUnlocked mismatch");}
 	} else if (typeof(save.action) !== 'string') {
 		if (DEBUG) {console.log("Loading Error: typeof action mismatch");}		
 	} else {
