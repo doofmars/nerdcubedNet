@@ -121,6 +121,7 @@ body.noMask .eventPanel:after {
 }
 
 .eventPanel #researchDescription {
+	clear:left;
 	font-weight: bold;
 	padding: 5px 0 5px;
 }
