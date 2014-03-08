@@ -1,5 +1,16 @@
 /*
- * Version 0.14.2.27
+ *	Version 0.14.3.08
+ *	Created by Doofmars - www.doofmars.de
+ *	Copyright 2014 Doofmars
+ *	Released under the MIT license
+ *
+ *	This is an unofficial fan project. Solely to parody the typical life of a YouTuber like Dan
+ *	This Project is created in my free time and out of fun and passion.
+ *	The game requires Javascript to run, and you are looking at the source code, 
+ *	so you are doing it wrong, if you just want to play.
+ *	Feel free to make your own adaptation of the game and please share the results.
+ *
+ *	Thank you for Playing!
  * 
  * */
 
@@ -66,7 +77,7 @@ function stopHeartbeat() {
 	clearInterval(nIntervId);
 }
 
-//add new subscribers. Maximal subscribers/videos: subscribers = (viedeos^4)/14666 
+//add new subscribers. Maximal subscribers/videos: subscribers = (videos^4)/14666 
 function newSubscriber() {
 	var rand = Math.random();
 	var limiter = ((Math.pow(variables.videos, 4)/14666) - variables.subscriber);
@@ -90,7 +101,7 @@ function newViews() {
 	addViews(variables.videos - variables.coldVideos);
 }
 
-//function to update timer intervall, to handle button lock time (and beeing able to save them)
+//function to update timer interval, to handle button lock time (and being able to save them)
 function decrementTimer() {
 	if (variables.timer[0] == 0) {
 		if (variables.action == "video1") {
@@ -230,7 +241,7 @@ function validateSave(save){
 	} else if (typeof(save.coldVideos) !== 'number' ){
 		if (DEBUG) {console.log("Loading Error: typeof coldVideos mismatch");}
 	} else if (typeof(save.cooldown) !== 'number' ){
-		if (DEBUG) {console.log("Loading Error: typeof cooldown mismatch");}
+		if (DEBUG) {console.log("Loading Error: typeof cool down mismatch");}
 	} else if (typeof(save.subscriber) !== 'number' ){
 		if (DEBUG) {console.log("Loading Error: typeof subscriber mismatch");}
 	} else if (typeof(save.extraSubs) !== 'number' ){
@@ -281,11 +292,7 @@ function debugMode() {
 
 
 function test(){
-//	showEvent(1);
-//	addMessage("sadfnasdfiojasdifasdjpfk opasdkfpodskafpoaksdfp");
-	bake_cookie("chocolateChipCookie", variables, 14);
-//	console.log(variables.timeoutEat);
-//	console.log(typeof(variables.timeoutEat[0]));
+	showEvent(1);
 }
 
 /*

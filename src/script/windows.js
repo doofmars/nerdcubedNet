@@ -49,17 +49,19 @@ function showWindow(title, text){
 
 function whatWindow(){
 	if (isWindowActive()) { return; }
-	showWindow("What?", "<p>This is an unofficial Fan project. Solely to parody the typical life of a YouTuber like Dan</p>" + 
+	showWindow("What?", "<p>This is an unofficial fan project. Solely to parody the typical life of a YouTuber like Dan</p>" + 
 			"<p>This Project is created in my free time and out of fun and passion.</p>" +
-			"<p>The game requires Javascript to run, so you shold be good if you can see this.</p>" +
+			"<p>The game requires Javascript to run, so you should be good if you can see this Message.</p>" +
 			"<p><b>Thank you for Playing!</b></p>"
 			).animate({opacity: 1}, 200, 'linear');
 }
 
 function whoWindow(){
 	if (isWindowActive()) { return; }
+	var  obfuscate1 = "doofmars";
+	var obfuscate2 = "nerdcubed.net";
 	showWindow("Who?", '<p>Idea and code created by Doofmars (<a href="https://twitter.com/doofmars">@doofmars</a>'+
-			' or <a href="http://www.doofmars.de">doofmars.de</a>, mostly german!)</p>' + 
+			' or <a href="http://www.doofmars.de">doofmars.de</a>, mostly german!) Mail goes to ' + obfuscate1 + '@' + obfuscate2 +'</p>' + 
 			'<p>The logo was created by <a href="https://twitter.com/WhoHidTheTom">@WhoHidTheTom</a> ' +
 			'(<a href="http://www.reddit.com/r/nerdcubed/comments/1esd2v/so_this_is_what_i_did_when_i_first_found_the_font/">Reddit</a>)'
 			).animate({opacity: 1}, 200, 'linear');
@@ -86,7 +88,7 @@ function whyWindow(){
 function saveWindow(){
 	if (isWindowActive()) { return; }
 	var messagebox = showWindow("Save", "The save-function works with cookies, "+
-			"so if you dont like cookies or want to restore your progress on another system copy, save and load the following text:");	
+			"so if you don't like cookies or want to restore your progress on another system copy, save and load the following text:");	
 	$('<textarea id="saveArea" readonly="readonly" wrap="on" >').val(JSON.stringify(variables))
 	.appendTo("#description");
 	messagebox.animate({opacity: 1}, 200, 'linear');
@@ -95,7 +97,7 @@ function saveWindow(){
 function loadWindow(){
 	if (isWindowActive()) { return; }
 	var messagebox = showWindow("Load", "The load-function works with cookies, "+
-			"so if you dont like cookies or want to restore your progress to another system copy, save and load the following text:");	
+			"so if you don't like cookies or want to restore your progress to another system load your progress here:");	
 	$('<textarea id="loadArea" wrap="on" >')
 	.appendTo("#description");
 	$('#windowButton').attr('onclick', 'loadSave()').attr('value', 'Ok & Load');

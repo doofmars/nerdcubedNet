@@ -36,7 +36,7 @@ function makeVideoPhase3() {
 		addHealth(video_stats[variables.videoID].hp);
 		messageVideo();
 		
-		addViews(Math.floor((variables.subscriber + variables.extraSubs) * video_stats[variables.videoID].multiplyer));
+		addViews(Math.floor((variables.subscriber + variables.extraSubs) * video_stats[variables.videoID].multiplier));
 		
 		if (variables.videoID == 4) { //decides if soapbox video or not
 			videoEventID(6); // special event for soap box video
