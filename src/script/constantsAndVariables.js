@@ -78,7 +78,12 @@ var video_stats =[
 	"time1": 2,
 	"time2": 4,
 	"hp": -7,
-	"multiplier": 1.3}
+	"multiplier": 1.3},
+{"title": "In a Nutshell [-16 HP | More views in a shorter time]",
+	"time1": 0,
+	"time2": 6,
+	"hp": -16,
+	"multiplier": 1.6,}
 				];
 
 var events = [
