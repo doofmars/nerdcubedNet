@@ -79,9 +79,9 @@ var video_stats =[
 	"time2": 4,
 	"hp": -7,
 	"multiplier": 1.3},
-{"title": "In a Nutshell [-16 HP | longer edits | More views]",
+{"title": "In a Nutshell [-16 HP | More views in a shorter time]",
 	"time1": 0,
-	"time2": 10,
+	"time2": 6,
 	"hp": -16,
 	"multiplier": 1.6,}
 				];
