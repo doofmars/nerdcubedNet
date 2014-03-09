@@ -61,9 +61,9 @@ function videoEventID(eventID){
 		addMessage("The editing failed and you have lost all of your footage");
 		addVideo(-1);
 		break;
-//	case 9:
-//		addMessage("");
-//		break;
+	case 9:
+		addMessage("You created an In a nutshell video.");
+		break;
 //	case 10:
 //		addMessage("");
 //		break;
