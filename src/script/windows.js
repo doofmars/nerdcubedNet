@@ -101,7 +101,7 @@ function loadWindow(){
 	$('<textarea id="loadArea" wrap="on" >')
 	.appendTo("#description");
 	$('#windowButton').attr('onclick', 'loadSave()').attr('value', 'Ok & Load');
-	$('<input type="button" id="windowButton" value="Cancle" onclick="removeWindow()">').appendTo('#buttons');
+	$('<input type="button" id="windowButton" value="Cancel" onclick="removeWindow()">').appendTo('#buttons');
 	messagebox.animate({opacity: 1}, 200, 'linear');
 }
 
