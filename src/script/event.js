@@ -14,12 +14,15 @@ function removeEvents(){
 	$('div#event').remove();
 }
 
+//for each video (excluding soapbox) ther is a 8:100 chance to get a random event from videoEventId
+//the eventID is determined by rand
 function videoEvent() {
 	var rand =  Math.floor(Math.random()*100);
 	videoEventID(rand);
 }
 
-
+//sends random events that can occur when a new video is made.
+//every option in videoEventId has to work with every type of video
 function videoEventID(eventID){
 	switch (eventID) {
 	case 1:

@@ -11,7 +11,7 @@ var variables = {
 		"videos": 0,
 		"videoID": 0,
 		"coldVideos": 0,
-		"cooldown": COOLDOWNTIME_VIDEO,
+		"cooldown": COOLDOWNTIME_VIDEO, //controls cold videos (old videos which wont get watched) and the auto-save function
 		"subscriber": 0,
 		"extraSubs": 0,
 		"health": 100,
@@ -121,6 +121,9 @@ var videoResearchData = [
 	},
 {"name": "Is this real live?",
 		"cost": 314159,
+	},
+{"name": "Lets sum it up",
+		"cost": 1000000,
 	},
 {"name": "No new types to research",
 		"cost": "-",
