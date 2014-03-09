@@ -39,8 +39,13 @@ function makeVideoPhase3() {
 		addViews(Math.floor((variables.subscriber + variables.extraSubs) * video_stats[variables.videoID].multiplier));
 		
 		if (variables.videoID == 4) { //decides if soapbox video or not
+			variables.cooldown = 60;
 			videoEventID(6); // special event for soap box video
+		} else if (variables.videoID == 8) {
+			variables.cooldown = 20;
+			videoEventId(9); // Event for "In a nutshell videos"
 		} else {
+			variables.cooldown = 60;
 			videoEvent();
 		}
 		
