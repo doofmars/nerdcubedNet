@@ -6,6 +6,7 @@ function makeVideo() {
 		variables.videoID = 0;
 	}
 	if (variables.action == "idle") {
+		variables.title.html("[Recording]");
 		variables.action = "video1";
 		$("#btVideo").attr("Value", "Recording");
 		lockButtons();
@@ -19,6 +20,7 @@ function makeVideo() {
 //make new video second phase "Editing", add health accordingly
 function makeVideoPhase2() {
 	if (variables.action == "video1") {
+		variables.title.html("[Editing]");
 		variables.action = "video2";
 		$("#btVideo").attr("Value", "Editing");
 		addHealth(video_stats[variables.videoID].hp);
@@ -32,6 +34,7 @@ function makeVideoPhase2() {
 //Reset to "idle", add video, call videoEvent, add health and views accordingly
 function makeVideoPhase3() {
 	if (variables.action == "video2") {
+		variables.title.html("Nerdcubed-Simulator");
 		addVideo(1);
 		addHealth(video_stats[variables.videoID].hp);
 		messageVideo();
