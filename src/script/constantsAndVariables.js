@@ -19,6 +19,7 @@ var variables = {
 		"typesUnlocked":0,
 		"timer": [0, 0, 0, 0], //timer for videos, eat1, eat2, eat3
 		"action": "idle",
+		"title": $("title")
 };
 
 //times, hp and messages for Food
