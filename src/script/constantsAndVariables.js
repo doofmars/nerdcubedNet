@@ -17,7 +17,7 @@ var variables = {
 		"health": 100,
 		"foodUnlocked":0,
 		"typesUnlocked":0,
-		"timer": [0, 0, 0, 0], //timer for videos, eat1, eat2, eat3
+		"timer": [0, 0, 0, 0, 0, 0], //timer for videos, eat1, eat2, eat3, reddit, twitter
 		"action": "idle",
 };
 
