@@ -119,7 +119,7 @@ var videoResearchData = [
 {"name": "Luke, I am your...",
 		"cost": 101100,
 	},
-{"name": "Is this real live?",
+{"name": "Is this real life?",
 		"cost": 314159,
 	},
 {"name": "Lets sum it up",
