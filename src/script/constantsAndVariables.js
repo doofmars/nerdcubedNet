@@ -83,7 +83,12 @@ var video_stats =[
 	"time1": 0,
 	"time2": 6,
 	"hp": -8,
-	"multiplier": 1.6,}
+	"multiplier": 1.6,},
+{"title": "Simulator [-85 HP | 6 Times More Vies",
+	"time1": 4,
+	"time2": 6,
+	"hp": -85,
+	"muiltiplier": 6}
 				];
 
 var events = [
