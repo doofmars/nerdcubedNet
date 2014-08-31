@@ -88,3 +88,29 @@ function unlockButtons() {
 	$("#btSleep").removeAttr("disabled");
 	$("#selVideo").removeAttr("disabled");
 }
+
+//Redddit
+
+function browseReddit() {
+	variables.timer[4] = Math.floor(Math.random * 10);
+	addMessage("You spend your night browsing reddit.");
+	addHealth(-10);
+}
+
+//Twitter
+
+function twitter(type) {
+	switch(type){
+	case "sick": // Talk about how sick you are
+		var sickness = Math.floor(Math.random * 10);
+		addHealth(-sickness);
+		addMessage("You talk about how sick you are on reddit.");
+		break;
+	case "praise": // Praise something
+		
+		break;
+	case "ramble": // Ramble about something
+		
+		break;
+	}
+}
